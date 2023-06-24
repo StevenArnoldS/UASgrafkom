@@ -100,6 +100,33 @@ public class Main {
 //        objects.get(0).scaleObject(20f ,1f, 20f);
         objects.get(0).translateObject(0f, 0f, 0f);
 
+        objects.add(new Model(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f,1f,0f,1.0f),
+                "resources/objects/fobj_lamp.obj"
+        ));
+        objects.get(3).scaleObject(0.05f ,0.05f, 0.05f);
+        objects.get(3).translateObject(2.0f, 0.0f, 1.0f);
+
+
+        objects.add(new Model(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(3f,1f,0f,1.0f),
+                "resources/objects/sumur.obj"
+        ));
+        objects.get(4).scaleObject(1f ,1f, 1f);
+        objects.get(4).translateObject(0.0f, 0.1f, 1.0f);
+
+
+
 //        //Track
 //        objectTrack.add(new Model(
 //                Arrays.asList(

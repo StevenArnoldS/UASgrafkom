@@ -27,6 +27,7 @@ public class Object extends ShaderProgram{
     List<Float> centerPoint;
     boolean scene = true;
 
+
     public void setScene(boolean scene) {
         this.scene = scene;
     }
