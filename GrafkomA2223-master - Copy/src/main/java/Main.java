@@ -69,7 +69,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                new Vector4f(1.0f,-1.5f,0.0f,1.0f),
                 "resources/objects/ninja_postac.obj"
         ));
         objects.get(0).scaleObject(0.3f,0.3f,0.3f);
@@ -110,7 +110,7 @@ public class Main {
                 "resources/objects/fobj_lamp.obj"
         ));
         objects.get(3).scaleObject(0.05f ,0.05f, 0.05f);
-        objects.get(3).translateObject(2.0f, -0.7f, 1.0f);
+        objects.get(3).translateObject(2.0f, -1.5f, 1.0f);
 
 
         objects.add(new Model(
@@ -271,6 +271,18 @@ public class Main {
         objects.get(16).scaleObject(2f ,2f, 2f);
         objects.get(16).translateObject(8f, 0f, 0f);
 
+        objects.add(new Model(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f,1f,0f,1.0f),
+                "resources/objects/fobj_lamp.obj"
+        ));
+        objects.get(17).scaleObject(0.05f ,0.05f, 0.05f);
+        objects.get(17).translateObject(2.0f, -1.5f, -13.0f);
+
         temp = objects.get(0).getCenterPoint();
 
     }
@@ -282,16 +294,17 @@ public class Main {
 
         System.out.println("derajat"+derajat);
         if (window.isKeyPressed(GLFW_KEY_W)) {
-            if (derajat == 0) {
-                objects.get(0).translateObject(0f, 0f, -speed);
-                camera.moveForward(speed);
-                derajat=0;
-            }
-            if (derajat == 90){
-                objects.get(0).translateObject(0f, 0f, -speed);
-                camera.moveForward(speed);
-                derajat=0;
-            }
+            camera.moveForward(speed);
+//            if (derajat == 0) {
+//                objects.get(0).translateObject(0f, 0f, -speed);
+//                camera.moveForward(speed);
+//                derajat=0;
+//            }
+//            if (derajat == 90){
+//                objects.get(0).translateObject(0f, 0f, -speed);
+//                camera.moveForward(speed);
+//                derajat=0;
+//            }
 //            if (modeToggle == 2) {
 //                camera.moveForward(move);
 //            } else if (modeToggle == 0) {
@@ -373,35 +386,36 @@ public class Main {
 //        }
 
         if (window.isKeyPressed(GLFW_KEY_A)) {
-            if (derajat == 0) {
-                objects.get(0).translateObject(-speed, 0f, 0f);
-                camera.moveLeft(speed);
-                derajat = 90;
-            }
-            if (derajat == 90) {
-                objects.get(0).translateObject(-speed, 0f, 0f);
-                camera.moveLeft(speed);
-                derajat = 90;
-            }
+            camera.moveLeft(speed);
+//            if (derajat == 0) {
+//                objects.get(0).translateObject(-speed, 0f, 0f);
+//                camera.moveLeft(speed);
+//                derajat = 90;
+//            }
+//            if (derajat == 90) {
+//                objects.get(0).translateObject(-speed, 0f, 0f);
+//                camera.moveLeft(speed);
+//                derajat = 90;
+//            }
         }
 
         if (window.isKeyPressed(GLFW_KEY_S)) {
             camera.moveBackwards(speed);
-            if (derajat != 180){
-                if (derajat == 0){
-                    camera.setPosition(temp.get(0), 2f, -5f - distance);
-                    camera.addRotation(0f,(float) Math.toRadians(180f));
-                    objects.get(0).rotateObject((float)Math.toRadians(180f),0f,1f,0f);
-                    derajat+=180;
-                }
-                if (derajat == 90){
-                    camera.setPosition(temp.get(0)+5f + distance, 2f, 0f);
-                    camera.addRotation(0f,(float) Math.toRadians(180f));
-                    objects.get(0).rotateObject((float)Math.toRadians(180f),0f,1f,0f);
-                    derajat-=180;
-                }
-            }
-            objects.get(0).translateObject(0f, 0f, -speed);
+//            if (derajat != 180){
+//                if (derajat == 0){
+//                    camera.setPosition(temp.get(0), 2f, -5f - distance);
+//                    camera.addRotation(0f,(float) Math.toRadians(180f));
+//                    objects.get(0).rotateObject((float)Math.toRadians(180f),0f,1f,0f);
+//                    derajat+=180;
+//                }
+//                if (derajat == 90){
+//                    camera.setPosition(temp.get(0)+5f + distance, 2f, 0f);
+//                    camera.addRotation(0f,(float) Math.toRadians(180f));
+//                    objects.get(0).rotateObject((float)Math.toRadians(180f),0f,1f,0f);
+//                    derajat-=180;
+//                }
+//            }
+//            objects.get(0).translateObject(0f, 0f, -speed);
 
 
 //            camera.moveForward(speed);
