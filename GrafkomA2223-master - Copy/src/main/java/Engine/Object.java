@@ -60,7 +60,7 @@ public class Object extends ShaderProgram{
         uniformsMap.createUniform("dirLight.ambient");
         uniformsMap.createUniform("dirLight.diffuse");
         uniformsMap.createUniform("dirLight.specular");
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 4; i++){
             uniformsMap.createUniform("pointLight["+i+"].position");
             uniformsMap.createUniform("pointLight["+i+"].ambient");
             uniformsMap.createUniform("pointLight["+i+"].diffuse");
@@ -117,8 +117,8 @@ public class Object extends ShaderProgram{
         Vector3f[] _pointLightPositions = {
                 new Vector3f(2.0f, 1.5f, -16.0f),
                 new Vector3f(2.0f, 1.5f, 1.0f),
-//                new Vector3f(2f, 2, -4.3f),
-//                new Vector3f(-2f, 2f, -4.3f),
+                new Vector3f(25.0f, 1.5f, 1.0f),
+                new Vector3f(25.0f, -1.5f, -13.0f),
         };
 
         for(int i = 0; i < _pointLightPositions.length; i++){

@@ -283,6 +283,30 @@ public class Main {
         objects.get(17).scaleObject(0.05f ,0.05f, 0.05f);
         objects.get(17).translateObject(2.0f, -1.5f, -13.0f);
 
+        objects.add(new Model(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f,1f,0f,1.0f),
+                "resources/objects/fobj_lamp.obj"
+        ));
+        objects.get(18).scaleObject(0.05f ,0.05f, 0.05f);
+        objects.get(18).translateObject(25.0f, -1.5f, -13.0f);
+
+        objects.add(new Model(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f,1f,0f,1.0f),
+                "resources/objects/fobj_lamp.obj"
+        ));
+        objects.get(19).scaleObject(0.05f ,0.05f, 0.05f);
+        objects.get(19).translateObject(25.0f, -1.5f, 1.0f);
+
         temp = objects.get(0).getCenterPoint();
 
     }
