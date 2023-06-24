@@ -1,0 +1,12 @@
+# Blender 3.5.1 MTL File: 'Combined.blend'
+# www.blender.org
+
+newmtl Constructions
+Ns 143.999954
+Ka 0.150000 0.150000 0.150000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd C:/constructionasset.png
