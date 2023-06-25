@@ -412,11 +412,11 @@ public class Main {
 
                 } else {
                     if (derajat == 0 || derajat == 90) {
-                        camera.moveForward(speed);
+                        camera.moveBackwards(speed);
                         derajat = 0;
                     }
                     if (derajat == 180) {
-                        camera.moveForward(-speed);  // Move camera backward
+                        camera.moveBackwards(-speed);  // Move camera backward
                         derajat = 0;
                     }
                 }
