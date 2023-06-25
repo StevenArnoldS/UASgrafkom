@@ -292,8 +292,8 @@ public class Main {
 
     public void input() {
         objects.get(0).updateCenterPoint();
-        System.out.println(posisi.get(0) +" " + posisi.get(1)+ " " +posisi.get(2));
-
+//        System.out.println(posisi.get(0) +" " + posisi.get(1)+ " " +posisi.get(2));
+        System.out.println(camera.getPosition().x +" " + camera.getPosition().y + " " + camera.getPosition().z);
         System.out.println("derajat"+derajat);
 
 
@@ -336,19 +336,20 @@ public class Main {
                         derajat = 0;
                     }
                     if (derajat == 180) {
-                        camera.moveForward(-speed);  // Move camera backward
+                        camera.addRotation(0f,(float) Math.toRadians(180f));
+                        camera.moveForward(speed);  // Move camera backward
                         derajat = 0;
                     }
                     if (derajat == -90){
-                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-                        camera.moveLeft(5f);
+//                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
+//                        camera.moveLeft(5f);
                         camera.addRotation(0f,(float) Math.toRadians(90f));
                         camera.moveForward(speed);
                         derajat = 0;
                     }
                     if (derajat == 90){
-                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-                        camera.moveRight(5f);
+//                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
+//                        camera.moveRight(5f);
                         camera.addRotation(0f,(float) Math.toRadians(-90f));
                         camera.moveForward(speed);
                         derajat = 0;
@@ -372,15 +373,18 @@ public class Main {
                         objects.get(0).translateObject(-speed, 0f, 0f);
                         camera.moveForward(speed);
                     } else {
+//                        if (camera.getPosition().z > -1 && camera.getPosition().z < -10) {
+//                            if (camera.getPosition().x > -3.5) {
+                                if (derajat == 0) {
+//                            camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
+                                    camera.addRotation(0f, (float) Math.toRadians(-90f));
+                                    derajat = -90;
 
-                        if (derajat == 0) {
-                            camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
-                            camera.addRotation(0f, (float) Math.toRadians(-90f));
-                            derajat = -90;
-
-                        }
-                        camera.moveForward(speed);
-                    }
+                                }
+                                camera.moveForward(speed);
+                            }
+//                        }
+//                    }
                 }
             }
         if (window.isKeyPressed(GLFW_KEY_S)) {
@@ -399,14 +403,11 @@ public class Main {
                         }
 
                     } else {
-                        if (derajat == 0 || derajat == 90) {
-                            camera.moveBackwards(speed);
-                            derajat = 0;
+                        if (derajat == 0) {
+                            camera.addRotation(0f, (float) Math.toRadians(180f));
+                            derajat = 180;
                         }
-                        if (derajat == 180) {
-                            camera.moveBackwards(-speed);  // Move camera backward
-                            derajat = 0;
-                        }
+                        camera.moveForward(speed);
                     }
                 }
             }
@@ -433,8 +434,8 @@ public class Main {
 
                         if (derajat == 0) {
                             camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
-                            camera.addRotation(0f, (float) Math.toRadians(-90f));
-                            derajat = -90;
+                            camera.addRotation(0f, (float) Math.toRadians(90f));
+                            derajat = 90;
 
                         }
                         camera.moveForward(speed);
