@@ -26,6 +26,7 @@ public class Main {
     ArrayList<Object> objectFinishLine = new ArrayList<>();
     ArrayList<Object> objectLighthouse = new ArrayList<>();
     ArrayList<Object> objectPagar= new ArrayList<>();
+    boolean eagle=false;
     Camera camera = new Camera();
     Projection projection = new Projection(window.getWidth(), window.getHeight());
     float distance = 1f;
@@ -333,12 +334,26 @@ public class Main {
 
 
             }else{
-                if (derajat == 0 || derajat == 90) {
+                if (derajat == 0) {
                     camera.moveForward(speed);
                     derajat = 0;
                 }
                 if (derajat == 180) {
                     camera.moveForward(-speed);  // Move camera backward
+                    derajat = 0;
+                }
+                if (derajat == -90){
+                    camera.setPosition(temp.get(2) + 0f,2f,temp.get(0));
+                    camera.moveLeft(5f);
+                    camera.addRotation(0f,(float) Math.toRadians(90f));
+                    camera.moveForward(speed);
+                    derajat = 0;
+                }
+                if (derajat == 90){
+                    camera.setPosition(temp.get(2) + 0f,2f,temp.get(0));
+                    camera.moveRight(5f);
+                    camera.addRotation(0f,(float) Math.toRadians(-90f));
+                    camera.moveForward(speed);
                     derajat = 0;
                 }
             }
@@ -382,26 +397,28 @@ public class Main {
                 }
             }
         if (window.isKeyPressed(GLFW_KEY_S)) {
-            if(!disabled) {
-                if (derajat == 0 || derajat == 90) {
-                    objects.get(0).translateObject(0f, 0f, speed);
-                    camera.moveForward(-speed);
-                    derajat = 0;
-                }
-                if (derajat == 180) {
-                    objects.get(0).translateObject(0f, 0f, speed);  // Move backward instead of forward
-                    camera.moveForward(-speed);  // Move camera backward
-                    derajat = 0;
-                }
+            if(!eagle) {
+                if (!disabled) {
+                    if (derajat == 0 || derajat == 90) {
+                        objects.get(0).translateObject(0f, 0f, speed);
+                        camera.moveForward(-speed);
+                        derajat = 0;
+                    }
+                    if (derajat == 180) {
+                        objects.get(0).translateObject(0f, 0f, speed);  // Move backward instead of forward
+                        camera.moveForward(-speed);  // Move camera backward
+                        derajat = 0;
+                    }
 
-            }else{
-                if (derajat == 0 || derajat == 90) {
-                    camera.moveForward(speed);
-                    derajat = 0;
-                }
-                if (derajat == 180) {
-                    camera.moveForward(-speed);  // Move camera backward
-                    derajat = 0;
+                } else {
+                    if (derajat == 0 || derajat == 90) {
+                        camera.moveForward(speed);
+                        derajat = 0;
+                    }
+                    if (derajat == 180) {
+                        camera.moveForward(-speed);  // Move camera backward
+                        derajat = 0;
+                    }
                 }
             }
 //            if (derajat != 180){
@@ -476,6 +493,7 @@ public class Main {
                             derajat = -90;
 
                         }
+                        camera.moveForward(speed);
 //                if (derajat == -180) {
 //                    camera.setPosition(temp.get(2), temp.get(1), temp.get(0));
 //                    camera.addRotation(0f, (float) Math.toRadians(-90f));
@@ -618,6 +636,23 @@ public class Main {
                     if (disabled) {
                         camera.setPosition(movex, movey, movez);
                         disabled = false;
+                    }
+                }
+
+                if (window.isKeyPressed(GLFW_KEY_E)) {
+                    if (!eagle) {
+                        camera.setPosition(0.2f, 70f, 0.1f);
+                        camera.setRotation((float) Math.toRadians(90f), 0f);
+                        eagle = true;
+                    }
+                }
+                if(window.isKeyPressed(GLFW_KEY_F)){
+                    if(eagle){
+                        camera.setPosition(temp.get(0) - 5f, 2f,0.1f);
+                        camera.setRotation((float)Math.toRadians(0f),0f);
+                        camera.moveRight(5f);
+                        camera.moveBackwards(5f);
+                        eagle=false;
                     }
                 }
 
