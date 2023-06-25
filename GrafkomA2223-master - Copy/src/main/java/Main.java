@@ -298,7 +298,7 @@ public class Main {
 
 
         if (window.isKeyPressed(GLFW_KEY_W)) {
-            if (posisi.get(2) > -20){
+            if (posisi.get(2) > -20 && camera.getPosition().z > -20){
                 if(!disabled) {
                     if (derajat == 0) {
                         objects.get(0).translateObject(0f, 0f, -speed);
@@ -360,7 +360,7 @@ public class Main {
 
 
             if (window.isKeyPressed(GLFW_KEY_A)) {
-                if (posisi.get(0) > -12){
+                if (posisi.get(0) > -12 && camera.getPosition().x > -12){
                     if (!disabled) {
                         if (derajat != -90)
                             if (derajat == 0) {
@@ -388,7 +388,7 @@ public class Main {
                 }
             }
         if (window.isKeyPressed(GLFW_KEY_S)) {
-            if (posisi.get(2) < 18){
+            if (posisi.get(2) < 18 && camera.getPosition().z < 18){
                 if(!eagle) {
                     if (!disabled) {
                         if (derajat == 0 || derajat == 90) {
@@ -417,7 +417,7 @@ public class Main {
 
 
             if (window.isKeyPressed(GLFW_KEY_D)) {
-                if (posisi.get(0) < 26){
+                if (posisi.get(0) < 26 && camera.getPosition().x < 26){
                     if (!disabled) {
                         if (derajat != 90) {
                             if (derajat == 0) {
