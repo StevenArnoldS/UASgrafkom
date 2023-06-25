@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL30.*;
 
 public class Main {
-    private Window window = new Window(720, 720, "Hello World");
+    private Window window = new Window(1920, 1080, "Hello World");
     ArrayList<Object> objects = new ArrayList<>();
     boolean eagle=false;
     Camera camera = new Camera();
@@ -51,7 +51,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1.0f,-1.5f,0.0f,1.0f),
+                new Vector4f(255/255f,204/255f,153/255f,1.0f),
                 "resources/objects/ninja_postac.obj"
         ));
         objects.get(0).scaleObject(0.3f,0.3f,0.3f);
@@ -63,7 +63,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(0.0f,0.0f,1.0f,1.0f),
+                new Vector4f(246/255f,135/255f,25/255f,0.0f),
                 "resources/objects/rumah.obj"
         ));
         objects.get(1).scaleObject(3f,3f,3f);
@@ -76,7 +76,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(0.0f,1f,0f,1.0f),
+                new Vector4f(96/255f,96/255f,96/255f,1.0f),
                 "resources/objects/tanah.obj"
         ));
         objects.get(2).scaleObject(3f ,2f, 2f);
@@ -88,7 +88,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,1f,0f,1.0f),
+                new Vector4f(224/255f,224/255f,224/255f,1.0f),
                 "resources/objects/fobj_lamp.obj"
         ));
         objects.get(3).scaleObject(0.05f ,0.05f, 0.05f);
@@ -101,7 +101,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(3f,1f,0f,1.0f),
+                new Vector4f(96/255f,96/255f,96/355f,1.0f),
                 "resources/objects/sumur.obj"
         ));
         objects.get(4).scaleObject(1f ,1f, 1f);
@@ -125,7 +125,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(34/255f,139/255f,34/255f,1.0f),
+                new Vector4f(102/255f,255/255f,102/255f,1.0f),
                 "resources/objects/pohon.obj"
         ));
         objects.get(6).translateObject(-8.0f, 0.0f, 0.0f);
@@ -136,7 +136,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(34/255f,139/255f,34/255f,1.0f),
+                new Vector4f(0/255f,102/255f,51/255f,1.0f),
                 "resources/objects/pohon.obj"
         ));
         objects.get(7).translateObject(-8.0f, 0.0f, -6.0f);
@@ -147,7 +147,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(34/255f,139/255f,34/255f,1.0f),
+                new Vector4f(178/255f,255/255f,102/255f,1.0f),
                 "resources/objects/pohon.obj"
         ));
         objects.get(8).translateObject(-8.0f, 0.0f, 8.0f);
@@ -158,7 +158,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(210/255f,105/255f,30/255f,1.0f),
+                new Vector4f(224/255f,224/255f,224/255f,1.0f),
                 "resources/objects/pagar.obj"
         ));
         objects.get(9).scaleObject(3f ,3f, 3f);
@@ -170,11 +170,11 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(210/255f,180/255f,140/255f,1.0f),
+                new Vector4f(125/255f,65/255f,6/255f,1.0f),
                 "resources/objects/soil.obj"
         ));
         objects.get(10).scaleObject(3f ,3f, 3f);
-        objects.get(10).translateObject(6f, 0.75f, -8f);
+        objects.get(10).translateObject(6f, 0.5f, -8f);
 
         objects.add(new Model(
                 Arrays.asList(
@@ -194,7 +194,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(50/255f,205/255f,50/255f,1.0f),
+                new Vector4f(255/255f,255/255f,51/255f,1.0f),
                 "resources/objects/rumput2.obj"
         ));
         objects.get(12).scaleObject(3f ,3f, 3f);
@@ -220,7 +220,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,0f,0f,1.0f),
+                new Vector4f(153/255f,0/255f,0/255f,1.0f),
                 "resources/objects/barn.obj"
         ));
         objects.get(14).scaleObject(3f ,3f, 2f);
@@ -232,7 +232,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,1f,1f,1.0f),
+                new Vector4f(255/255f,178/255f,102/255f,1.0f),
                 "resources/objects/sapi.obj"
         ));
         objects.get(15).scaleObject(2f ,2f, 2f);
@@ -244,7 +244,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(255/255f,192/255f,203/255f,1.0f),
+                new Vector4f(255/255f,204/255f,229/255f,1.0f),
                 "resources/objects/babi.obj"
         ));
         objects.get(16).scaleObject(2f ,2f, 2f);
@@ -256,7 +256,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,1f,0f,1.0f),
+                new Vector4f(224/255f,224/255f,224/255f,1.0f),
                 "resources/objects/fobj_lamp.obj"
         ));
         objects.get(17).scaleObject(0.05f ,0.05f, 0.05f);
@@ -268,7 +268,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,1f,0f,1.0f),
+                new Vector4f(224/255f,224/255f,224/255f,1.0f),
                 "resources/objects/fobj_lamp.obj"
         ));
         objects.get(18).scaleObject(0.05f ,0.05f, 0.05f);
@@ -280,14 +280,13 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(1f,1f,0f,1.0f),
+                new Vector4f(224/255f,224/255f,224/255f,1.0f),
                 "resources/objects/fobj_lamp.obj"
         ));
         objects.get(19).scaleObject(0.05f ,0.05f, 0.05f);
         objects.get(19).translateObject(25.0f, -1.5f, 1.0f);
 
         posisi = objects.get(0).getCenterPoint();
-
     }
 
     public void input() {
@@ -458,6 +457,11 @@ public class Main {
                 }
                 if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
                     camera.addRotation(0f, 0.01f);
+                }
+
+                if (window.isKeyPressed(GLFW_KEY_T)){
+                        camera.moveBackwards(speed);
+
                 }
 
                 if (window.isKeyPressed(GLFW_KEY_4)) {
