@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL30.*;
 
 public class Main {
-    private Window window = new Window(1920, 1080, "Hello World");
+    private Window window = new Window(720, 720, "Hello World");
     ArrayList<Object> objects = new ArrayList<>();
     boolean eagle=false;
     Camera camera = new Camera();
@@ -297,28 +297,30 @@ public class Main {
 
 
         if (window.isKeyPressed(GLFW_KEY_W)) {
-            if (posisi.get(2) > -20 && camera.getPosition().z > -20) {
-                if (!disabled) {
-                    if (derajat == 0) {
-                        objects.get(0).translateObject(0f, 0f, -speed);
-                        camera.moveForward(speed);
-                    } else {
-                        float angleRadians = (float) Math.toRadians(derajat);
-                        float xMovement = (float) Math.sin(angleRadians) * speed;
-                        float zMovement = (float) Math.cos(angleRadians) * speed;
+            if (posisi.get(2) > -13 && camera.getPosition().z > -13 && posisi.get(0) > -5 && camera.getPosition().x > -5 && posisi.get(2) < 11 && camera.getPosition().z < 11 && posisi.get(0) < 21 && camera.getPosition().x < 21) {
+//                if (posisi.get(2) > 4.8){
+                    if (!disabled) {
+                        if (derajat == 0) {
+                            objects.get(0).translateObject(0f, 0f, -speed);
+                            camera.moveForward(speed);
+                        } else {
+                            float angleRadians = (float) Math.toRadians(derajat);
+                            float xMovement = (float) Math.sin(angleRadians) * speed;
+                            float zMovement = (float) Math.cos(angleRadians) * speed;
 
-                        objects.get(0).translateObject(xMovement, 0f, -zMovement);
+                            objects.get(0).translateObject(xMovement, 0f, -zMovement);
+                            camera.moveForward(speed);
+                        }
+                    }else{
                         camera.moveForward(speed);
                     }
-                }else{
-                    camera.moveForward(speed);
-                }
+//                }
             }
         }
 
 
             if (window.isKeyPressed(GLFW_KEY_A)) {
-                if (posisi.get(0) > -12 && camera.getPosition().x > -12) {
+                if (posisi.get(0) > -5 && camera.getPosition().x > -12) {
                     if (window.isKeyPressed(GLFW_KEY_A)) {
                         Vector3f target = objects.get(0).updateCenterPoint();
                         Vector3f sub = new Vector3f(camera.getPosition().x - target.x, camera.getPosition().y - target.y,
