@@ -291,9 +291,6 @@ public class Main {
 
     public void input() {
         objects.get(0).updateCenterPoint();
-//        System.out.println(posisi.get(0) +" " + posisi.get(1)+ " " +posisi.get(2));
-        System.out.println(camera.getPosition().x + " " + camera.getPosition().y + " " + camera.getPosition().z);
-        System.out.println("derajat" + derajat);
 
 
         if (window.isKeyPressed(GLFW_KEY_W)) {
@@ -327,7 +324,6 @@ public class Main {
                                 camera.getPosition().z - target.z);
                         if (disabled) {
                             camera.addRotation(0f, (float) Math.toRadians(-0.2f));
-                            System.out.println(camera.getPosition());
                         }
                         if (!disabled) {
                             float xnow = (float) ((sub.x * Math.cos(Math.toRadians(0f))) + (sub.z * Math.sin(Math.toRadians(0f))));
@@ -372,7 +368,6 @@ public class Main {
                                 camera.getPosition().z - target.z);
                         if (disabled) {
                             camera.addRotation(0f, (float) Math.toRadians(0.2f));
-                            System.out.println(camera.getPosition());
                         }
                         if (!disabled) {
                             float xnow = (float) ((sub.x * Math.cos(Math.toRadians(0f))) + (sub.z * Math.sin(Math.toRadians(0f))));
