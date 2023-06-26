@@ -25,7 +25,7 @@ public class Main {
     Projection projection = new Projection(window.getWidth(), window.getHeight());
     float speed = 0.025f;
     List<Float> posisi;
-    int derajat = 0;
+    float derajat = 0;
     boolean tpp=true;
     boolean fpp=false;
     boolean disabled=false;
@@ -292,231 +292,174 @@ public class Main {
     public void input() {
         objects.get(0).updateCenterPoint();
 //        System.out.println(posisi.get(0) +" " + posisi.get(1)+ " " +posisi.get(2));
-        System.out.println(camera.getPosition().x +" " + camera.getPosition().y + " " + camera.getPosition().z);
-        System.out.println("derajat"+derajat);
+        System.out.println(camera.getPosition().x + " " + camera.getPosition().y + " " + camera.getPosition().z);
+        System.out.println("derajat" + derajat);
 
 
         if (window.isKeyPressed(GLFW_KEY_W)) {
-            if (posisi.get(2) > -20 && camera.getPosition().z > -20){
-                if(!disabled) {
+            if (posisi.get(2) > -20 && camera.getPosition().z > -20) {
+                if (!disabled) {
                     if (derajat == 0) {
                         objects.get(0).translateObject(0f, 0f, -speed);
                         camera.moveForward(speed);
-                        derajat = 0;
-                    }
-                    if (derajat == 180) {
-                        objects.get(0).translateObject(0f, 0f, speed);  // Move backward instead of forward
-                        camera.moveForward(-speed);  // Move camera backward
-                        derajat = 0;
-                    }
-                    if (derajat == -90){
-                        objects.get(0).rotateObject((float)Math.toRadians(-90f),0f,1f,0f);
-                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-                        camera.moveLeft(5f);
-                        camera.addRotation(0f,(float) Math.toRadians(90f));
-                        objects.get(0).translateObject(0f, 0f, -speed);
-                        camera.moveForward(speed);
-                        derajat = 0;
-                    }
-                    if (derajat == 90){
-                        objects.get(0).rotateObject((float)Math.toRadians(90f),0f,1f,0f);
-                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-                        camera.moveRight(5f);
-                        camera.addRotation(0f,(float) Math.toRadians(-90f));
-                        objects.get(0).translateObject(0f, 0f, -speed);
-                        camera.moveForward(speed);
-                        derajat = 0;
-                    }
+                    } else {
+                        float angleRadians = (float) Math.toRadians(derajat);
+                        float xMovement = (float) Math.sin(angleRadians) * speed;
+                        float zMovement = (float) Math.cos(angleRadians) * speed;
 
-
+                        objects.get(0).translateObject(xMovement, 0f, -zMovement);
+                        camera.moveForward(speed);
+                    }
                 }else{
-                    if (derajat == 0) {
-                        camera.moveForward(speed);
-                        derajat = 0;
-                    }
-                    if (derajat == 180) {
-                        camera.addRotation(0f,(float) Math.toRadians(180f));
-                        camera.moveForward(speed);  // Move camera backward
-                        derajat = 0;
-                    }
-                    if (derajat == -90){
-//                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-//                        camera.moveLeft(5f);
-                        camera.addRotation(0f,(float) Math.toRadians(90f));
-                        camera.moveForward(speed);
-                        derajat = 0;
-                    }
-                    if (derajat == 90){
-//                        camera.setPosition(posisi.get(2) + 0f,2f,posisi.get(0));
-//                        camera.moveRight(5f);
-                        camera.addRotation(0f,(float) Math.toRadians(-90f));
-                        camera.moveForward(speed);
-                        derajat = 0;
-                    }
+                    camera.moveForward(speed);
                 }
             }
         }
 
 
             if (window.isKeyPressed(GLFW_KEY_A)) {
-                if (posisi.get(0) > -12 && camera.getPosition().x > -12){
-                    if (!disabled) {
-                        if (derajat != -90)
-                            if (derajat == 0) {
-                                camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
-                                camera.addRotation(0f, (float) Math.toRadians(-90f));
-                                objects.get(0).rotateObject((float) Math.toRadians(-90f), 0f, 1f, 0f);
-                                derajat = -90;
-                            }
-
-                        objects.get(0).translateObject(-speed, 0f, 0f);
-                        camera.moveForward(speed);
-                    } else {
-//                        if (camera.getPosition().z > -1 && camera.getPosition().z < -10) {
-//                            if (camera.getPosition().x > -3.5) {
-                                if (derajat == 0) {
-//                            camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
-                                    camera.addRotation(0f, (float) Math.toRadians(-90f));
-                                    derajat = -90;
-
-                                }
-                                camera.moveForward(speed);
-                            }
-//                        }
-//                    }
-                }
-            }
-        if (window.isKeyPressed(GLFW_KEY_S)) {
-            if (posisi.get(2) < 18 && camera.getPosition().z < 18){
-                if(!eagle) {
-                    if (!disabled) {
-                        if (derajat == 0 || derajat == 90) {
-                            objects.get(0).translateObject(0f, 0f, speed);
-                            camera.moveForward(-speed);
-                            derajat = 0;
+                if (posisi.get(0) > -12 && camera.getPosition().x > -12) {
+                    if (window.isKeyPressed(GLFW_KEY_A)) {
+                        Vector3f target = objects.get(0).updateCenterPoint();
+                        Vector3f sub = new Vector3f(camera.getPosition().x - target.x, camera.getPosition().y - target.y,
+                                camera.getPosition().z - target.z);
+                        if (disabled) {
+                            camera.addRotation(0f, (float) Math.toRadians(-0.2f));
+                            System.out.println(camera.getPosition());
                         }
-                        if (derajat == 180) {
-                            objects.get(0).translateObject(0f, 0f, speed);  // Move backward instead of forward
-                            camera.moveForward(-speed);  // Move camera backward
-                            derajat = 0;
+                        if (!disabled) {
+                            float xnow = (float) ((sub.x * Math.cos(Math.toRadians(0f))) + (sub.z * Math.sin(Math.toRadians(0f))));
+                            float ynow = sub.y;
+                            float znow = (float) ((-sub.x * Math.sin(Math.toRadians(0f))) + (sub.z * Math.cos(Math.toRadians(0f))));
+                            camera.addRotation(0f, (float) Math.toRadians(-0.2f));
+                            derajat -= 0.2f;
+                            camera.setPosition(xnow + target.x, ynow + target.y, znow + target.z);
+                            objects.get(0).translateObject((target.x + xnow) * -1, (target.y + ynow) * -1, (target.z + znow) * -1);
+                            objects.get(0).rotateObject((float) Math.toRadians(0.2f), 0f, 1f, 0f);
+                            objects.get(0).translateObject((target.x + xnow) * 1, (target.y + ynow) * 1, (target.z + znow) * 1);
                         }
-
-                    } else {
-                        if (derajat == 0) {
-                            camera.addRotation(0f, (float) Math.toRadians(180f));
-                            derajat = 180;
-                        }
-                        camera.moveForward(speed);
                     }
                 }
             }
-        }
+            if (window.isKeyPressed(GLFW_KEY_S)) {
+                if (posisi.get(2) > -20 && camera.getPosition().z > -20) {
+                    if (!disabled) {
+                        if (derajat == 0) {
+                            objects.get(0).translateObject(0f, 0f, speed);
+                            camera.moveBackwards(speed);
+                        } else {
+                            float angleRadians = (float) Math.toRadians(derajat);
+                            float xMovement = (float) Math.sin(angleRadians) * speed;
+                            float zMovement = (float) Math.cos(angleRadians) * speed;
 
-
+                            objects.get(0).translateObject(-xMovement, 0f, zMovement);
+                            camera.moveBackwards(speed);
+                        }
+                    }else{
+                        camera.moveBackwards(speed);
+                    }
+                }
+            }
 
 
             if (window.isKeyPressed(GLFW_KEY_D)) {
-                if (posisi.get(0) < 26 && camera.getPosition().x < 26){
-                    if (!disabled) {
-                        if (derajat != 90) {
-                            if (derajat == 0) {
-                                camera.setPosition(posisi.get(2) - 5f, 2f, posisi.get(0));
-                                camera.addRotation(0f, (float) Math.toRadians(90f));
-                                objects.get(0).rotateObject((float) Math.toRadians(90f), 0f, 1f, 0f);
-                                derajat = 90;
-
-                            }
+                if (posisi.get(0) > -12 && camera.getPosition().x > -12) {
+                    if (window.isKeyPressed(GLFW_KEY_D)) {
+                        Vector3f target = objects.get(0).updateCenterPoint();
+                        Vector3f sub = new Vector3f(camera.getPosition().x - target.x, camera.getPosition().y - target.y,
+                                camera.getPosition().z - target.z);
+                        if (disabled) {
+                            camera.addRotation(0f, (float) Math.toRadians(0.2f));
+                            System.out.println(camera.getPosition());
                         }
-                        objects.get(0).translateObject(speed, 0f, 0f);
-                        camera.moveForward(speed);
-                    } else {
-
-                        if (derajat == 0) {
-                            camera.setPosition(posisi.get(2) + 5f, 2f, posisi.get(0));
-                            camera.addRotation(0f, (float) Math.toRadians(90f));
-                            derajat = 90;
-
+                        if (!disabled) {
+                            float xnow = (float) ((sub.x * Math.cos(Math.toRadians(0f))) + (sub.z * Math.sin(Math.toRadians(0f))));
+                            float ynow = sub.y;
+                            float znow = (float) ((-sub.x * Math.sin(Math.toRadians(0f))) + (sub.z * Math.cos(Math.toRadians(0f))));
+                            camera.addRotation(0f, (float) Math.toRadians(0.2f));
+                            derajat += 0.2f;
+                            camera.setPosition(xnow + target.x, ynow + target.y, znow + target.z);
+                            objects.get(0).translateObject((target.x + xnow) * -1, (target.y + ynow) * -1, (target.z + znow) * -1);
+                            objects.get(0).rotateObject((float) Math.toRadians(-0.2f), 0f, 1f, 0f);
+                            objects.get(0).translateObject((target.x + xnow) * 1, (target.y + ynow) * 1, (target.z + znow) * 1);
                         }
-                        camera.moveForward(speed);
-
-
                     }
                 }
             }
 
 
+            if (window.isKeyPressed(GLFW_KEY_UP)) {
+                camera.addRotation(-0.01f, 0f);
+            }
+            if (window.isKeyPressed(GLFW_KEY_DOWN)) {
+                camera.addRotation(0.01f, 0f);
+            }
+            if (window.isKeyPressed(GLFW_KEY_LEFT)) {
+                camera.addRotation(0f, -0.01f);
+            }
+            if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
+                camera.addRotation(0f, 0.01f);
+            }
 
-                if (window.isKeyPressed(GLFW_KEY_UP)) {
-                    camera.addRotation(-0.01f, 0f);
-                }
-                if (window.isKeyPressed(GLFW_KEY_DOWN)) {
-                    camera.addRotation(0.01f, 0f);
-                }
-                if (window.isKeyPressed(GLFW_KEY_LEFT)) {
-                    camera.addRotation(0f, -0.01f);
-                }
-                if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
-                    camera.addRotation(0f, 0.01f);
-                }
-
-                if (window.isKeyPressed(GLFW_KEY_T)){
-                        camera.moveBackwards(speed);
-
-                }
-
-                if (window.isKeyPressed(GLFW_KEY_4)) {
-                    if (tpp) {
-                        camera.moveForward(7f);
-                        tpp = false;
-                        fpp = true;
-                    }
-                }
-
-                if (window.isKeyPressed(GLFW_KEY_5)) {
-                    if (fpp) {
-                        camera.moveBackwards(7f);
-                        tpp = true;
-                        fpp = false;
-                    }
-                }
-
-
-                if (window.isKeyPressed(GLFW_KEY_6)) {
-                    if (!disabled) {
-                        Vector3f tmp = camera.getPosition();
-                        movex = tmp.x;
-                        movey = tmp.y;
-                        movez = tmp.z;
-                        disabled = true;
-                    }
-                }
-
-                if (window.isKeyPressed(GLFW_KEY_7)) {
-                    if (disabled) {
-                        camera.setPosition(movex, movey, movez);
-                        disabled = false;
-                    }
-                }
-
-                if (window.isKeyPressed(GLFW_KEY_E)) {
-                    if (!eagle) {
-                        camera.setPosition(0.2f, 70f, 0.1f);
-                        camera.setRotation((float) Math.toRadians(90f), 0f);
-                        eagle = true;
-                    }
-                }
-                if(window.isKeyPressed(GLFW_KEY_F)){
-                    if(eagle){
-                        camera.setPosition(posisi.get(0) - 5f, 2f,0.1f);
-                        camera.setRotation((float)Math.toRadians(0f),0f);
-                        camera.moveRight(5f);
-                        camera.moveBackwards(5f);
-                        eagle=false;
-                    }
-                }
-
+            if (window.isKeyPressed(GLFW_KEY_T)) {
+                camera.moveBackwards(speed);
 
             }
+
+            if (window.isKeyPressed(GLFW_KEY_4)) {
+                if (tpp) {
+                    camera.moveForward(7f);
+                    tpp = false;
+                    fpp = true;
+                }
+            }
+
+            if (window.isKeyPressed(GLFW_KEY_5)) {
+                if (fpp) {
+                    camera.moveBackwards(7f);
+                    tpp = true;
+                    fpp = false;
+                }
+            }
+
+
+            if (window.isKeyPressed(GLFW_KEY_6)) {
+                if (!disabled) {
+                    Vector3f tmp = camera.getPosition();
+                    movex = tmp.x;
+                    movey = tmp.y;
+                    movez = tmp.z;
+                    disabled = true;
+                }
+            }
+
+            if (window.isKeyPressed(GLFW_KEY_7)) {
+                if (disabled) {
+                    camera.setPosition(movex, movey, movez);
+                    disabled = false;
+                }
+            }
+
+            if (window.isKeyPressed(GLFW_KEY_E)) {
+                if (!eagle) {
+                    camera.setPosition(0.2f, 70f, 0.1f);
+                    camera.setRotation((float) Math.toRadians(90f), 0f);
+                    eagle = true;
+                }
+            }
+            if (window.isKeyPressed(GLFW_KEY_F)) {
+                if (eagle) {
+                    camera.setPosition(posisi.get(0) - 5f, 2f, 0.1f);
+                    camera.setRotation((float) Math.toRadians(0f), 0f);
+                    camera.moveRight(5f);
+                    camera.moveBackwards(5f);
+                    eagle = false;
+                }
+            }
+
+
+        }
+
 
 
     public void loop() {

@@ -191,12 +191,10 @@ public class Object extends ShaderProgram{
             child.rotateObject(degree,x,y,z);
         }
     }
-    public void updateCenterPoint(){
-        Vector3f destTemp = new Vector3f();
-        model.transformPosition(0.0f,0.0f,0.0f,destTemp);
-        centerPoint.set(0,destTemp.x);
-        centerPoint.set(1,destTemp.y);
-        centerPoint.set(2,destTemp.z);
+    public Vector3f updateCenterPoint(){
+        Vector3f centerTemp = new Vector3f();
+        model.transformPosition(0.0f,0.0f,0.0f,centerTemp);
+        return centerTemp;
     }
     public void scaleObject(Float scaleX,Float scaleY,Float scaleZ){
         model = new Matrix4f().scale(scaleX,scaleY,scaleZ).mul(new Matrix4f(model));
